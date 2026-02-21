@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>社長向け AIコレジャナイ感 診断 | 7問・3分</title>
+  <meta name="description" content="AIが悪いのではなく、社長仕様が未設定なだけ。7問の診断でコレジャナイの原因を可視化します。">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ========================================
+       画面A: トップページ
+       ======================================== -->
+  <div id="page-home" class="page active">
+    <div class="home-hero">
+      <span class="home-icon" aria-hidden="true">🎯</span>
+      <h1 class="page-title">社長向け<br>AIコレジャナイ感 診断</h1>
+      <p class="page-subtitle">
+        AIが悪いのではなく、<strong>社長仕様が未設定</strong>なだけ。<br>
+        7問・約3分で、ズレの原因がわかります。
+      </p>
+    </div>
+
+    <div class="home-features">
+      <div class="home-feature">
+        <span class="home-feature-icon" aria-hidden="true">⏱</span>
+        <span>7問・3択だけ。3分で完了します</span>
+      </div>
+      <div class="home-feature">
+        <span class="home-feature-icon" aria-hidden="true">🔍</span>
+        <span>AI活用がズレる原因を3つの軸で可視化</span>
+      </div>
+      <div class="home-feature">
+        <span class="home-feature-icon" aria-hidden="true">💡</span>
+        <span>入力を変えるだけでAIの挙動が変わるデモ付き</span>
+      </div>
+    </div>
+
+    <button id="btn-start" class="btn btn-primary">
+      診断を始める
+    </button>
+
+    <p class="home-trust">
+      個人情報の入力は不要です。<br>
+      入力内容を営業目的で無断公開することはありません。<br>
+      匿名で集計し、サービス改善にのみ活用します。
+    </p>
+  </div>
+
+  <!-- ========================================
+       画面B: 診断ページ
+       ======================================== -->
+  <div id="page-quiz" class="page">
+    <div class="quiz-progress">
+      <div class="quiz-progress-bar">
+        <div id="quiz-progress-fill" class="quiz-progress-fill" style="width: 0%"></div>
+      </div>
+      <span id="quiz-progress-text" class="quiz-progress-text">1/7</span>
+    </div>
+
+    <div id="quiz-content">
+      <!-- JS で動的に生成 -->
+    </div>
+  </div>
+
+  <!-- ========================================
+       画面C: 結果ページ
+       ======================================== -->
+  <div id="page-result" class="page">
+    <div class="result-header">
+      <h1 class="page-title">あなたの<br>コレジャナイの原因</h1>
+      <p class="page-subtitle">未設定箇所が見つかりました</p>
+    </div>
+
+    <!-- スコアチャート -->
+    <div id="score-chart" class="card score-chart">
+      <!-- JS で動的に生成 -->
+    </div>
+
+    <!-- 結果詳細 -->
+    <div id="result-details">
+      <!-- JS で動的に生成 -->
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <p class="cta-text" id="cta-text"></p>
+      <a id="cta-button" href="#" class="btn btn-primary" target="_blank" rel="noopener">
+        社長AIセッションを見る
+      </a>
+    </div>
+
+    <!-- アクションボタン -->
+    <div class="result-actions">
+      <button id="btn-view-demo" class="btn btn-secondary">
+        Before／Afterデモを見る
+      </button>
+    </div>
+
+    <!-- 紹介転送テキスト -->
+    <div class="share-section">
+      <p class="share-section-title">知り合いの社長に教える</p>
+      <div id="share-text-box" class="share-text-box"></div>
+      <button id="btn-copy-share" class="btn-copy">
+        <span id="copy-icon">📋</span>
+        <span id="copy-label">テキストをコピー</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================
+       画面D: Before/After デモページ
+       ======================================== -->
+  <div id="page-demo" class="page">
+    <h1 class="page-title">同じ相談でも<br>入力が違うだけで<br>挙動が変わる</h1>
+    <p class="page-subtitle">
+      テーマ：<strong>会議の改善</strong>
+    </p>
+
+    <!-- Before -->
+    <div class="demo-block">
+      <div class="demo-block-header">
+        <span class="demo-block-badge before">Before</span>
+        <span class="demo-block-title">曖昧な入力</span>
+      </div>
+      <div class="demo-input">
+        <div class="demo-input-label">あなたの入力</div>
+        <div id="demo-before-input"></div>
+      </div>
+      <div class="demo-output before">
+        <div class="demo-output-label before">AIの出力</div>
+        <ul id="demo-before-output"></ul>
+        <div id="demo-before-comment" class="demo-comment"></div>
+      </div>
+    </div>
+
+    <div class="demo-arrow" aria-hidden="true">↓</div>
+
+    <!-- After -->
+    <div class="demo-block">
+      <div class="demo-block-header">
+        <span class="demo-block-badge after">After</span>
+        <span class="demo-block-title">社長OS＋補助人格</span>
+      </div>
+      <div class="demo-input">
+        <div class="demo-input-label">あなたの入力</div>
+        <div id="demo-after-input"></div>
+      </div>
+      <div class="demo-output after">
+        <div class="demo-output-label after">AIの出力</div>
+        <div id="demo-after-output"></div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section mt-32">
+      <p class="cta-text">
+        <strong>判断基準3つ</strong>と<strong>補助人格1体</strong>を設計するだけで、<br>
+        AIの挙動がここまで変わります。
+      </p>
+      <a id="cta-button-demo" href="#" class="btn btn-primary" target="_blank" rel="noopener">
+        社長AIセッションを見る
+      </a>
+    </div>
+
+    <button id="btn-back-result" class="btn btn-ghost mt-16">
+      ← 診断結果に戻る
+    </button>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
