@@ -22,7 +22,7 @@ const state = {
 };
 
 // --- CTA URL（後で差し替え可能） ---
-const CTA_URL = '#'; // TODO: 予約ページ or LINE のURLに差し替え
+const CTA_URL = 'lp.html#lp-apply';
 
 // --- DOM Cache ---
 const pages = {
