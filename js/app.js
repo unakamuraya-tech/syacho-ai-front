@@ -22,7 +22,7 @@ const state = {
 };
 
 // --- CTA URL（後で差し替え可能） ---
-const CTA_URL = '#'; // TODO: 予約ページ or LINE のURLに差し替え
+const CTA_URL = 'lp.html#lp-apply';
 
 // --- DOM Cache ---
 const pages = {
@@ -192,7 +192,7 @@ function renderResult() {
         <div class="score-axis-header">
           <span class="score-axis-name ${isTop ? 'is-top' : ''}">
             ${axisShortLabels[axis]}
-            ${isTop ? '<span class="top-badge">主要ギャップ</span>' : ''}
+            ${isTop ? '<span class="top-badge">ズレが大きい</span>' : ''}
           </span>
           <span class="score-axis-value">${s[axis]}pt</span>
         </div>
@@ -214,19 +214,19 @@ function renderResult() {
       <div class="card result-detail">
         <div class="result-detail-title">${axisLabels[axis]}</div>
         <div class="result-item">
-          <span class="result-item-label observation">観察</span>
+          <span class="result-item-label observation">いま起きていること</span>
           ${escapeHtml(t.observation)}
         </div>
         <div class="result-item">
-          <span class="result-item-label cause">原因</span>
+          <span class="result-item-label cause">その原因</span>
           ${escapeHtml(t.cause)}
         </div>
         <div class="result-item">
-          <span class="result-item-label inevitability">必然</span>
+          <span class="result-item-label inevitability">なぜそうなるか</span>
           ${escapeHtml(t.inevitability)}
         </div>
         <div class="result-item">
-          <span class="result-item-label prescription">処方箋</span>
+          <span class="result-item-label prescription">やること</span>
           ${escapeHtml(t.prescription)}
         </div>
       </div>

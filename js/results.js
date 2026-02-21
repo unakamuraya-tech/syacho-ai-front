@@ -3,43 +3,43 @@
  */
 
 export const axisLabels = {
-  decision: '判断基準ギャップ（Decision OS）',
-  execution: '現場翻訳ギャップ（Execution OS）',
-  companion: '補助人格ギャップ（Companion OS）',
+  decision: '決め方のズレ',
+  execution: '伝わり方のズレ',
+  companion: '役割設定のズレ',
 };
 
 export const axisShortLabels = {
-  decision: 'Decision OS',
-  execution: 'Execution OS',
-  companion: 'Companion OS',
+  decision: '決め方',
+  execution: '伝わり方',
+  companion: '役割設定',
 };
 
 export const axisDescriptions = {
-  decision: '何を優先して決めるかが未設定',
-  execution: '現場で動く言葉へ翻訳する情報が未設定',
-  companion: '社長の苦手領域を補う役割分担が未設定',
+  decision: '何を優先して決めるか、AIに伝えていない',
+  execution: '現場の事情をAIに渡していない',
+  companion: 'AIにどんな役割をやらせるか決めていない',
 };
 
 export const resultTemplates = {
   decision: {
     observation: 'AIが無難で、決めきれない答えになりがちです',
-    cause: '判断基準（何を優先して決めるか）が未設定です',
-    inevitability: 'AIは安全運転の一般論に寄ります',
-    prescription: '判断基準を3つだけ先に渡すと、結論が出やすくなります',
+    cause: '「何を優先して決めるか」をAIに伝えていません',
+    inevitability: '伝えないと、AIは安全運転の一般論しか出せません',
+    prescription: '優先順位を3つだけ先に渡すと、結論が出やすくなります',
   },
   execution: {
-    observation: '答えは出るのに、現場で動く形に落ちにくいです',
-    cause: '現場の制約（人/時間/予算/禁止）情報が未設定です',
-    inevitability: 'AIは理想論の提案になりやすいです',
+    observation: '答えは出るのに、現場で動く形になりにくいです',
+    cause: '現場の事情（人・時間・予算・NG事項）をAIに渡していません',
+    inevitability: '事情を知らないと、AIは理想論しか出せません',
     prescription: '制約を3つだけ渡すと、明日やることに変わります',
   },
   companion: {
     observation:
-      'しっくり来ない、寄り添いすぎる、責任がぼやけると感じやすいです',
-    cause: '社長の苦手を補う役割（補助人格）が未設定です',
-    inevitability: 'AIは当たり障りのない口調になりやすいです',
+      'しっくり来ない、当たり障りがない、と感じやすいです',
+    cause: 'AIにどんな役割をやらせるか決めていません',
+    inevitability: '役割がないと、AIは無難な返しになりがちです',
     prescription:
-      '参謀/COO/翻訳者のどれか1体を固定すると、挙動が安定します',
+      '参謀・段取り番頭・現場通訳のどれか1つに絞ると、返答が変わります',
   },
 };
 
@@ -53,22 +53,22 @@ export const demoContent = {
     output: [
       '目的を明確にしましょう',
       'アジェンダを作りましょう',
-      'ファシリテーションが重要です',
+      '進行役が重要です',
     ],
-    comment: '綺麗だが決まらない／動かない',
+    comment: '綺麗だけど、結局どうすればいいかわからない',
   },
   after: {
     inputLines: [
-      '判断基準：スピード優先 / 現場負荷を増やさない / 数字で検証',
-      '補助人格：COO。結論先出し、次の一手を3つに絞る',
+      '優先順位：スピード重視 / 現場の手間を増やさない / 数字で確認',
+      '役割：段取り番頭。結論から言って、次にやることを3つに絞る',
       '相談：会議が長い。改善したい。',
     ],
     output: {
       conclusion: '会議は30分固定、決める会議だけ残す',
       actions: [
         '議題テンプレを作る',
-        '決裁ラインを明確にする',
-        '会議終了条件を設定する',
+        '誰が決めるかを先に決める',
+        '「これが決まったら終わり」を最初に宣言する',
       ],
       dontDo: ['全員参加', '議論のための議論'],
     },
@@ -78,14 +78,14 @@ export const demoContent = {
 /**
  * 紹介転送用テキスト
  */
-export const shareText = `AIがうまく動かない原因がわかる診断を見つけました。7問・3分で終わるので試してみてください。
-売り込みとかじゃなく、自分のAI活用のズレが見えるやつです。`;
+export const shareText = `AIに相談してもイマイチな答えしか返ってこない原因がわかる診断、やってみたら面白かったです。7問・3分で終わります。
+売り込みじゃなくて、自分の使い方のどこがズレてるか見えるやつです。`;
 
 /**
  * CTA文言
  */
 export const ctaTexts = {
-  main: 'あなたの会社用に、判断基準3つと補助人格1体を作るとAIの挙動が安定します',
-  sub: 'その設計を一緒にやるのが社長AIセッションです',
-  button: '社長AIセッションを見る',
+  main: 'あなたの会社に合わせて、優先順位3つとAIの役割1つを決めるだけで返答が変わります',
+  sub: 'それを一緒に作るのが社長AIセッションです',
+  button: '社長AIセッションを見てみる',
 };

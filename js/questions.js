@@ -52,9 +52,9 @@ export const questions = [
     id: 6,
     text: 'いま一番欲しいAIの役割は？',
     choices: [
-      { label: 'A', text: '決める参謀' },
-      { label: 'B', text: '段取りCOO' },
-      { label: 'C', text: '現場翻訳者' },
+      { label: 'A', text: '決めてくれる参謀' },
+      { label: 'B', text: '段取りしてくれる番頭' },
+      { label: 'C', text: '現場に伝えてくれる通訳' },
     ],
   },
   {

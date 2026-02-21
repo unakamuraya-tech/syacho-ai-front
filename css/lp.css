@@ -1,0 +1,287 @@
+/* ========================================
+   社長AIセッション LP - Style
+   style.css のCSS変数・ボタンを再利用
+   ======================================== */
+
+/* --- Layout --- */
+.lp {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px 40px;
+}
+
+/* --- Hero --- */
+.lp-hero {
+  text-align: center;
+  padding: 56px 0 40px;
+}
+
+.lp-hero-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.lp-hero-title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.lp-hero-title strong {
+  color: var(--color-primary);
+}
+
+.lp-hero-sub {
+  font-size: 0.95rem;
+  color: var(--color-text-sub);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.lp-hero-sub strong {
+  color: var(--color-text);
+}
+
+.lp-hero-btn {
+  margin-bottom: 12px;
+}
+
+.lp-hero-note {
+  font-size: 0.82rem;
+  color: var(--color-text-light);
+}
+
+/* --- Sections --- */
+.lp-section {
+  padding: 32px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.lp-section-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.lp-section-sub {
+  font-size: 0.9rem;
+  color: var(--color-text-sub);
+  margin-bottom: 20px;
+}
+
+/* --- Pain Points --- */
+.lp-pain-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.lp-pain-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.lp-pain-icon {
+  flex-shrink: 0;
+  font-size: 1.3rem;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.lp-pain-item p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.lp-pain-cause {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--color-text-sub);
+  margin-top: 20px;
+  padding: 16px;
+  background: var(--color-primary-light);
+  border-radius: var(--radius-sm);
+}
+
+.lp-pain-cause strong {
+  color: var(--color-primary);
+}
+
+/* --- Steps --- */
+.lp-steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.lp-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.lp-step:last-child {
+  border-bottom: none;
+}
+
+.lp-step-num {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.lp-step strong {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
+.lp-step-desc {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-text-sub);
+  line-height: 1.5;
+}
+
+/* --- Deliverables --- */
+.lp-deliverables {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.lp-deliverable {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.lp-deliverable-icon {
+  flex-shrink: 0;
+  font-size: 1.3rem;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.lp-deliverable strong {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
+.lp-deliverable-desc {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-text-sub);
+  line-height: 1.5;
+}
+
+/* --- Apply Section --- */
+.lp-apply-section {
+  background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+  border-radius: var(--radius);
+  padding: 28px 20px;
+  margin-top: 8px;
+  border-top: none;
+  text-align: center;
+}
+
+.lp-apply-section .lp-section-title {
+  margin-bottom: 16px;
+}
+
+.lp-apply-info {
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.lp-apply-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 0.92rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.lp-apply-row:last-child {
+  border-bottom: none;
+}
+
+.lp-apply-label {
+  font-weight: 600;
+  color: var(--color-text-sub);
+  flex-shrink: 0;
+}
+
+.lp-apply-note {
+  font-size: 0.82rem;
+  color: var(--color-text-light);
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+/* --- Footer --- */
+.lp-footer {
+  text-align: center;
+  padding: 32px 0 16px;
+}
+
+.lp-footer-link {
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.lp-footer-link:hover {
+  text-decoration: underline;
+}
+
+/* --- Responsive --- */
+@media (min-width: 600px) {
+  .lp {
+    padding: 0 24px 60px;
+  }
+
+  .lp-hero {
+    padding-top: 80px;
+  }
+
+  .lp-hero-title {
+    font-size: 1.6rem;
+  }
+
+  .lp-section-title {
+    font-size: 1.3rem;
+  }
+}

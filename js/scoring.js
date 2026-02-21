@@ -1,9 +1,9 @@
 /**
  * スコアリング仕様（3軸）
  *
- * Decision OS（判断基準ギャップ）
- * Execution OS（現場翻訳ギャップ）
- * Companion OS（補助人格ギャップ）
+ * decision（決め方のズレ）
+ * execution（伝わり方のズレ）
+ * companion（役割設定のズレ）
  */
 
 // 配点ルール: question index → choice label → { decision, execution, companion }
@@ -64,9 +64,9 @@ export function calculateScores(answers) {
 
   // 上位2軸を特定（同点の場合: Decision > Execution > Companion）
   const axes = [
-    { key: 'decision', label: 'Decision OS', score: scores.decision },
-    { key: 'execution', label: 'Execution OS', score: scores.execution },
-    { key: 'companion', label: 'Companion OS', score: scores.companion },
+    { key: 'decision', label: '決め方', score: scores.decision },
+    { key: 'execution', label: '伝わり方', score: scores.execution },
+    { key: 'companion', label: '役割設定', score: scores.companion },
   ];
 
   // スコア降順でソート（同点は定義順 = 優先順位順）
