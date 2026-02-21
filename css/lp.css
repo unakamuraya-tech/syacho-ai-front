@@ -23,11 +23,11 @@
 }
 
 .lp-hero-title {
-  font-size: 1.45rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  line-height: 1.5;
-  margin-bottom: 16px;
-  letter-spacing: -0.02em;
+  line-height: 1.6;
+  margin-bottom: 18px;
+  letter-spacing: 0;
 }
 
 .lp-hero-title strong {
@@ -37,7 +37,7 @@
 .lp-hero-sub {
   font-size: 0.95rem;
   color: var(--color-text-sub);
-  line-height: 1.7;
+  line-height: 1.8;
   margin-bottom: 28px;
 }
 
@@ -56,8 +56,8 @@
 
 /* --- Sections --- */
 .lp-section {
-  padding: 32px 0;
-  border-top: 1px solid var(--color-border);
+  padding: 36px 0;
+  border-top: 1px dashed var(--color-border);
 }
 
 .lp-section-title {
@@ -105,12 +105,12 @@
 
 .lp-pain-cause {
   font-size: 0.92rem;
-  line-height: 1.7;
+  line-height: 1.8;
   color: var(--color-text-sub);
   margin-top: 20px;
-  padding: 16px;
+  padding: 18px;
   background: var(--color-primary-light);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius);
 }
 
 .lp-pain-cause strong {
@@ -130,7 +130,7 @@
   align-items: flex-start;
   gap: 14px;
   padding: 16px 0;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px dashed var(--color-border);
 }
 
 .lp-step:last-child {
@@ -139,13 +139,13 @@
 
 .lp-step-num {
   flex-shrink: 0;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-primary), #a89ad8);
   color: #fff;
   font-weight: 700;
   font-size: 0.85rem;
@@ -204,9 +204,9 @@
 
 /* --- Apply Section --- */
 .lp-apply-section {
-  background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+  background: linear-gradient(135deg, #f3f0ff 0%, #edfaf3 100%);
   border-radius: var(--radius);
-  padding: 28px 20px;
+  padding: 30px 22px;
   margin-top: 8px;
   border-top: none;
   text-align: center;
@@ -228,9 +228,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
+  padding: 10px 0;
   font-size: 0.92rem;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px dashed var(--color-border);
 }
 
 .lp-apply-row:last-child {
