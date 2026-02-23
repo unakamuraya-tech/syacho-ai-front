@@ -1,0 +1,66 @@
+{
+  "name": "並列レビュー役 10名",
+  "description": "各レビュー役がそれぞれの専門視点で体験を評価する。統合時に重複を排除し、Impact × Effort で優先順位をつける。",
+  "roles": [
+    {
+      "id": "copy_editor",
+      "name": "コピー編集",
+      "focus": "文章の明快さ・トーン・長さ・重複。煽らず断定しすぎない表現になっているか",
+      "check_pages": ["home", "quiz", "result", "demo", "lp"]
+    },
+    {
+      "id": "ux_flow",
+      "name": "UX（離脱ポイント）",
+      "focus": "どこで迷うか・どこで止まるか・タップ数・スクロール量・フィードバックの有無",
+      "check_pages": ["home", "quiz", "result", "demo"]
+    },
+    {
+      "id": "psychology",
+      "name": "心理設計（報酬・自己一致）",
+      "focus": "ミニ報酬の効き・自己認識の強さ・結果への共感度・完走動機",
+      "check_pages": ["quiz", "result"]
+    },
+    {
+      "id": "trust_ethics",
+      "name": "信頼・倫理（煽り／透明性）",
+      "focus": "煽り表現・個人情報の扱い・営業感・誠実さ。設計方針の遵守",
+      "check_pages": ["home", "result", "lp"]
+    },
+    {
+      "id": "visual_hierarchy",
+      "name": "ビジュアル階層（単調さの解消）",
+      "focus": "セクション間のメリハリ・色の使い分け・山場の演出・余白設計",
+      "check_pages": ["result", "demo"]
+    },
+    {
+      "id": "cta_design",
+      "name": "CTA設計（順番・選択肢）",
+      "focus": "無料価値→有料の順番・ボタンの文言・押し売り感のなさ・導線の自然さ",
+      "check_pages": ["result", "demo", "lp"]
+    },
+    {
+      "id": "mobile_device",
+      "name": "モバイル実機目線",
+      "focus": "タップ領域・文字サイズ・スクロール量・横溢れ・指での操作感",
+      "check_pages": ["home", "quiz", "result", "demo", "lp"]
+    },
+    {
+      "id": "accessibility",
+      "name": "アクセシビリティ",
+      "focus": "色のコントラスト・スクリーンリーダー対応・フォーカス順序・aria属性",
+      "check_pages": ["home", "quiz", "result", "demo", "lp"]
+    },
+    {
+      "id": "result_value",
+      "name": "結果価値（テンプレ化の強さ）",
+      "focus": "コピペテンプレの実用性・Before/Afterの説得力・持ち帰り感",
+      "check_pages": ["result", "demo"]
+    },
+    {
+      "id": "competitive_diff",
+      "name": "競合比較（よくある診断との差）",
+      "focus": "一般的な性格診断との差別化・社長AI固有の価値・記憶に残るか",
+      "check_pages": ["home", "result"]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "レビュー出力テンプレート",
+  "description": "各レビュー役はこのフォーマットで指摘を出す。統合時に重複排除・優先順位付けが容易になる。",
+  "issue_template": {
+    "location": "どの画面のどの要素か（例: result > タイプ名ヒーロー）",
+    "issue": "問題（1文で簡潔に）",
+    "why": "なぜ問題か（心理/UXの観点で）",
+    "severity": "高 / 中 / 低",
+    "quick_fix": "今すぐ直せる案",
+    "better_fix": "理想案",
+    "impact": "開始率 / 完走率 / CTA / 信頼 のどれに効くか",
+    "effort": "小 / 中 / 大"
+  },
+  "prioritization": {
+    "method": "Impact × Effort マトリクス",
+    "rule": "高インパクト・小工数から順に着手",
+    "categories": [
+      { "priority": "P0", "impact": "高", "effort": "小", "action": "即着手" },
+      { "priority": "P1", "impact": "高", "effort": "中", "action": "次スプリント" },
+      { "priority": "P2", "impact": "中", "effort": "小", "action": "余裕があれば" },
+      { "priority": "P3", "impact": "低 or 大工数", "effort": "中〜大", "action": "バックログ" }
+    ]
+  },
+  "example_issue": {
+    "location": "result > スコアチャート > 決め方 9pt",
+    "issue": "9ptが何点満点か、高いほど良いのか悪いのかわからない",
+    "why": "相対感がないと、数字だけでは自分の状態を判断できない",
+    "severity": "高",
+    "quick_fix": "9/14 と満点を表示 + 一行アドバイスを添える",
+    "better_fix": "スコアレベル（高/中/低）で色分け + レベル別の具体アドバイス",
+    "impact": "信頼",
+    "effort": "小"
+  }
+}
