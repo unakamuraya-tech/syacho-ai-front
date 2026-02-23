@@ -304,6 +304,29 @@ body {
   border-color: var(--color-primary);
   background: var(--color-primary-light);
   box-shadow: 0 0 0 1px var(--color-primary);
+  animation: choiceTap 0.25s ease;
+}
+
+@keyframes choiceTap {
+  0% { transform: scale(1); }
+  40% { transform: scale(0.97); }
+  100% { transform: scale(1); }
+}
+
+/* 選択確認チェックマーク */
+.quiz-choice.selected::after {
+  content: '✓';
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
 }
 
 .quiz-choice-label {
@@ -347,7 +370,7 @@ body {
   text-align: center;
   padding: 32px 16px 24px;
   margin: -24px -20px 20px;
-  background: linear-gradient(180deg, #1e3a5f 0%, #2563eb 100%);
+  background: linear-gradient(180deg, #1e3a5f 0%, #1d4ed8 100%);
   border-radius: 0 0 24px 24px;
   color: #fff;
 }
@@ -847,11 +870,26 @@ body {
   }
 }
 
+/* --- Demo CTA パルスアニメーション --- */
+.btn-cta-pulse {
+  animation: ctaPulse 2s ease-in-out 0.5s 2;
+}
+
+@keyframes ctaPulse {
+  0%, 100% { box-shadow: var(--shadow-md); }
+  50% { box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.2), var(--shadow-md); }
+}
+
 /* --- Accessibility --- */
 .quiz-choice:focus-visible,
 .btn:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
+}
+
+/* SPA遷移時の tabindex=-1 フォーカスでアウトラインを出さない */
+.page:focus {
+  outline: none;
 }
 
 /* Screen reader only */

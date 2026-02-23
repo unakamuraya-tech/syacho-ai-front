@@ -81,17 +81,7 @@
       <!-- JS で動的に生成 -->
     </div>
 
-    <!-- スコアチャート -->
-    <div id="score-chart" class="card score-chart">
-      <!-- JS で動的に生成 -->
-    </div>
-
-    <!-- 結果詳細 -->
-    <div id="result-details">
-      <!-- JS で動的に生成 -->
-    </div>
-
-    <!-- 無料価値：コピペ入力テンプレ -->
+    <!-- 処方箋：コピペ入力テンプレ（ファーストビュー優先） -->
     <div class="template-section">
       <div class="template-section-header">
         <span class="template-section-icon" aria-hidden="true">📝</span>
@@ -108,11 +98,22 @@
       <div id="template-copy-feedback" class="template-copy-feedback" aria-live="polite"></div>
     </div>
 
-    <!-- 無料価値：Before/After デモ -->
+    <!-- 処方箋の裏付け：Before/After デモ -->
     <div class="result-actions">
       <button id="btn-view-demo" class="btn btn-secondary">
         Before／Afterデモを見る
       </button>
+    </div>
+
+    <!-- 根拠：スコアチャート -->
+    <div class="section-title mt-24">あなたのズレの内訳</div>
+    <div id="score-chart" class="card score-chart">
+      <!-- JS で動的に生成 -->
+    </div>
+
+    <!-- 根拠：結果詳細 -->
+    <div id="result-details">
+      <!-- JS で動的に生成 -->
     </div>
 
     <!-- CTA（有料／深掘り） -->
@@ -178,13 +179,13 @@
       </div>
     </div>
 
-    <!-- CTA -->
-    <div class="cta-section mt-32">
+    <!-- CTA（After直後・動機が最も高い瞬間） -->
+    <div class="cta-section demo-cta mt-24">
       <p class="cta-text">
         <strong>優先順位を3つ</strong>と<strong>AIの役割を1つ</strong>決めるだけで、<br>
         返ってくる答えがここまで変わります。
       </p>
-      <a id="cta-button-demo" href="#" class="btn btn-primary" target="_blank" rel="noopener">
+      <a id="cta-button-demo" href="#" class="btn btn-primary btn-cta-pulse" target="_blank" rel="noopener">
         社長AIセッションを見てみる
       </a>
     </div>

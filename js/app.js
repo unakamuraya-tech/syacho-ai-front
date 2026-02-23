@@ -42,6 +42,36 @@ function showPage(pageId) {
   Object.values(pages).forEach((p) => p.classList.remove('active'));
   pages[pageId].classList.add('active');
   window.scrollTo(0, 0);
+
+  // フォーカス管理：画面遷移時にページ先頭へフォーカスを移動
+  const page = pages[pageId];
+  page.setAttribute('tabindex', '-1');
+  page.focus({ preventScroll: true });
+
+  // スクリーンリーダー向けライブリージョンでページ遷移を通知
+  announcePageChange(pageId);
+}
+
+function announcePageChange(pageId) {
+  const labels = {
+    home: 'トップページ',
+    quiz: '診断ページ',
+    result: '診断結果ページ',
+    demo: 'Before/Afterデモページ',
+  };
+  let announcer = document.getElementById('sr-announcer');
+  if (!announcer) {
+    announcer = document.createElement('div');
+    announcer.id = 'sr-announcer';
+    announcer.setAttribute('role', 'status');
+    announcer.setAttribute('aria-live', 'polite');
+    announcer.className = 'sr-only';
+    document.body.appendChild(announcer);
+  }
+  announcer.textContent = '';
+  requestAnimationFrame(() => {
+    announcer.textContent = `${labels[pageId] || ''} に移動しました`;
+  });
 }
 
 function handleRoute() {
