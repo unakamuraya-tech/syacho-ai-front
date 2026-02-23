@@ -242,6 +242,19 @@ body {
   white-space: nowrap;
 }
 
+/* ミニ報酬 */
+.quiz-mini-reward {
+  background: var(--color-accent-light);
+  border: 1px solid #fbbf24;
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  color: #92400e;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  animation: fadeIn 0.3s ease;
+}
+
 .quiz-question-text {
   font-size: 1.25rem;
   font-weight: 700;
@@ -328,6 +341,50 @@ body {
 }
 
 /* --- Result Page --- */
+
+/* タイプ名ヒーロー（山場） */
+.result-hero {
+  text-align: center;
+  padding: 32px 16px 24px;
+  margin: -24px -20px 20px;
+  background: linear-gradient(180deg, #1e3a5f 0%, #2563eb 100%);
+  border-radius: 0 0 24px 24px;
+  color: #fff;
+}
+
+.result-hero-icon {
+  font-size: 2.4rem;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.result-type-name {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+
+.result-type-tagline {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* インサイト（小さな驚き） */
+.result-insight {
+  background: var(--color-accent-light);
+  border-left: 4px solid var(--color-accent);
+  padding: 14px 16px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: #92400e;
+  margin-bottom: 20px;
+}
+
 .result-header {
   text-align: center;
   margin-bottom: 28px;
@@ -366,6 +423,20 @@ body {
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--color-text-light);
+}
+
+.score-axis-max {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--color-text-light);
+  opacity: 0.7;
+}
+
+.score-axis-advice {
+  font-size: 0.82rem;
+  color: var(--color-text-sub);
+  margin-top: 6px;
+  line-height: 1.5;
 }
 
 .score-axis-bar {
@@ -451,6 +522,86 @@ body {
 .result-item-label.prescription {
   background: #d1fae5;
   color: #065f46;
+}
+
+/* テンプレートセクション */
+.template-section {
+  background: var(--color-surface);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin: 24px 0;
+}
+
+.template-section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.template-section-icon {
+  font-size: 1.2rem;
+}
+
+.template-section-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.template-section-desc {
+  font-size: 0.85rem;
+  color: var(--color-text-sub);
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.copy-template-box {
+  background: #f1f5f9;
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  margin-bottom: 14px;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.copy-template-line {
+  margin-bottom: 6px;
+}
+
+.copy-template-line:last-child {
+  margin-bottom: 0;
+}
+
+.copy-template-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 1px 8px;
+  border-radius: 4px;
+  margin-right: 6px;
+}
+
+.btn-copy-template {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-copy-template.copied {
+  background: #059669;
+}
+
+.template-copy-feedback {
+  font-size: 0.82rem;
+  color: #059669;
+  text-align: center;
+  margin-top: 8px;
+  min-height: 1.2em;
 }
 
 .result-actions {
@@ -682,6 +833,16 @@ body {
   }
 
   .page-title {
+    font-size: 1.7rem;
+  }
+
+  .result-hero {
+    margin: -40px -24px 24px;
+    padding: 40px 24px 28px;
+    border-radius: 0 0 28px 28px;
+  }
+
+  .result-type-name {
     font-size: 1.7rem;
   }
 }

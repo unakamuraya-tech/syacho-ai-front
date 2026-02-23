@@ -11,6 +11,11 @@ import {
   demoContent,
   shareText,
   ctaTexts,
+  typeNames,
+  typeTaglines,
+  typeInsights,
+  scoreAdvice,
+  copyTemplates,
 } from './results.js';
 import { trackEvent, saveResult, getLastResult } from './events.js';
 
@@ -68,22 +73,71 @@ function initHome() {
   });
 }
 
+// --- ミニ報酬メッセージ（Q3回答後に表示） ---
+function getMiniRewardHtml() {
+  // Q3まで回答済みの場合のみ表示
+  if (state.currentQuestion !== 3) return '';
+  const answered = Object.keys(state.answers).length;
+  if (answered < 3) return '';
+
+  // 暫定傾向を計算
+  const tempScores = { decision: 0, execution: 0, companion: 0 };
+  for (const [qId, choice] of Object.entries(state.answers)) {
+    const qScores = getTempScore(Number(qId), choice);
+    if (qScores) {
+      tempScores.decision += qScores.decision;
+      tempScores.execution += qScores.execution;
+      tempScores.companion += qScores.companion;
+    }
+  }
+  const leading = Object.entries(tempScores).sort((a, b) => b[1] - a[1])[0][0];
+  const hints = {
+    decision: '決め方が曖昧になりやすいかも',
+    execution: '現場の事情がAIに届いていないかも',
+    companion: 'AIの役割が定まっていないかも',
+  };
+
+  return `<div class="quiz-mini-reward">ここまでの傾向：${hints[leading]}（残り4問で確定します）</div>`;
+}
+
+// 簡易スコア参照（scoring.jsのscoreMapを再現せずimportから取得）
+function getTempScore(qId, choice) {
+  const scoreMap = {
+    1: { A: { decision: 2, execution: 0, companion: 0 }, B: { decision: 0, execution: 2, companion: 0 }, C: { decision: 0, execution: 0, companion: 2 } },
+    2: { A: { decision: 2, execution: 0, companion: 0 }, B: { decision: 1, execution: 1, companion: 0 }, C: { decision: 0, execution: 0, companion: 2 } },
+    3: { A: { decision: 0, execution: 2, companion: 0 }, B: { decision: 2, execution: 0, companion: 0 }, C: { decision: 0, execution: 0, companion: 2 } },
+    4: { A: { decision: 2, execution: 0, companion: 0 }, B: { decision: 0, execution: 2, companion: 0 }, C: { decision: 1, execution: 0, companion: 1 } },
+    5: { A: { decision: 0, execution: 2, companion: 0 }, B: { decision: 1, execution: 1, companion: 0 }, C: { decision: 0, execution: 0, companion: 2 } },
+    6: { A: { decision: 2, execution: 0, companion: 0 }, B: { decision: 0, execution: 2, companion: 0 }, C: { decision: 0, execution: 0, companion: 2 } },
+    7: { A: { decision: 1, execution: 1, companion: 1 }, B: { decision: 1, execution: 1, companion: 1 }, C: { decision: 0, execution: 0, companion: 0 } },
+  };
+  return scoreMap[qId]?.[choice] || null;
+}
+
 // --- Quiz Page ---
 function renderQuiz() {
   const q = questions[state.currentQuestion];
   const progress = ((state.currentQuestion + 1) / questions.length) * 100;
   const isLast = state.currentQuestion === questions.length - 1;
 
+  // 残り時間表示（1問約25秒想定）
+  const remaining = questions.length - state.currentQuestion;
+  const remainingSeconds = remaining * 25;
+  const remainingText = remainingSeconds >= 60
+    ? `残り約${Math.ceil(remainingSeconds / 60)}分`
+    : `残り約${remainingSeconds}秒`;
+
   document.getElementById('quiz-progress-fill').style.width = `${progress}%`;
-  document.getElementById('quiz-progress-text').textContent =
-    `${state.currentQuestion + 1}/${questions.length}`;
+  document.getElementById('quiz-progress-text').textContent = remainingText;
 
   trackEvent('view_quiz', { question: state.currentQuestion + 1 });
 
   const selectedChoice = state.answers[q.id] || null;
+  const miniReward = getMiniRewardHtml();
 
   const content = document.getElementById('quiz-content');
   content.innerHTML = `
+    ${miniReward}
     <div class="quiz-question-number">Q${q.id}</div>
     <h2 class="quiz-question-text">${escapeHtml(q.text)}</h2>
     <div class="quiz-choices">
@@ -162,6 +216,13 @@ function completeQuiz() {
   window.location.hash = '#/result';
 }
 
+// --- スコアレベル判定 ---
+function getScoreLevel(score) {
+  if (score >= 8) return 'high';
+  if (score >= 4) return 'mid';
+  return 'low';
+}
+
 // --- Result Page ---
 function renderResult() {
   const scores = state.scores;
@@ -178,15 +239,25 @@ function renderResult() {
   }
 
   const s = state.scores;
-  trackEvent('view_result', { topAxes: s.topAxes });
+  const primaryAxis = s.topAxes[0];
+  trackEvent('view_result', { topAxes: s.topAxes, type: typeNames[primaryAxis] });
 
-  // スコアチャート
+  // タイプ名ヒーロー
+  document.getElementById('result-type-name').textContent = typeNames[primaryAxis];
+  document.getElementById('result-type-tagline').textContent = typeTaglines[primaryAxis];
+
+  // インサイト（小さな驚き）
+  document.getElementById('result-insight').textContent = typeInsights[primaryAxis];
+
+  // スコアチャート（アドバイス付き）
   const maxScore = 14;
   const chartEl = document.getElementById('score-chart');
   chartEl.innerHTML = ['decision', 'execution', 'companion']
     .map((axis) => {
       const isTop = s.topAxes.includes(axis);
       const pct = Math.round((s[axis] / maxScore) * 100);
+      const level = getScoreLevel(s[axis]);
+      const advice = scoreAdvice[axis][level];
       return `
       <div class="score-axis">
         <div class="score-axis-header">
@@ -194,12 +265,12 @@ function renderResult() {
             ${axisShortLabels[axis]}
             ${isTop ? '<span class="top-badge">ズレが大きい</span>' : ''}
           </span>
-          <span class="score-axis-value">${s[axis]}pt</span>
+          <span class="score-axis-value">${s[axis]}<span class="score-axis-max">/${maxScore}</span></span>
         </div>
         <div class="score-axis-bar">
           <div class="score-axis-fill ${axis}" style="width: ${pct}%"></div>
         </div>
-        <div class="text-sm text-muted mt-8">${axisDescriptions[axis]}</div>
+        <div class="score-axis-advice">${advice}</div>
       </div>
     `;
     })
@@ -233,6 +304,34 @@ function renderResult() {
     `;
     })
     .join('');
+
+  // コピペテンプレ
+  const tmpl = copyTemplates[primaryAxis];
+  const templateText = `${tmpl.priority}\n${tmpl.constraint}\n${tmpl.role}`;
+  const templateEl = document.getElementById('copy-template-box');
+  templateEl.innerHTML = `
+    <div class="copy-template-line"><span class="copy-template-label">優先順位</span>${escapeHtml(tmpl.priority.replace(/^優先順位：/, ''))}</div>
+    <div class="copy-template-line"><span class="copy-template-label">制約</span>${escapeHtml(tmpl.constraint.replace(/^制約：/, ''))}</div>
+    <div class="copy-template-line"><span class="copy-template-label">AIの役割</span>${escapeHtml(tmpl.role.replace(/^AIの役割：/, ''))}</div>
+  `;
+
+  // テンプレコピーボタン
+  document.getElementById('btn-copy-template').addEventListener('click', () => {
+    navigator.clipboard.writeText(templateText).then(() => {
+      trackEvent('copy_template');
+      const btn = document.getElementById('btn-copy-template');
+      const icon = document.getElementById('template-copy-icon');
+      const feedback = document.getElementById('template-copy-feedback');
+      btn.classList.add('copied');
+      icon.textContent = '✅';
+      feedback.textContent = 'コピーしました！AIへの相談時に貼り付けてください';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        icon.textContent = '📋';
+        feedback.textContent = '';
+      }, 3000);
+    });
+  });
 
   // CTA
   document.getElementById('cta-text').innerHTML =

@@ -69,9 +69,16 @@
        画面C: 結果ページ
        ======================================== -->
   <div id="page-result" class="page">
-    <div class="result-header">
-      <h1 class="page-title">あなたの<br>コレジャナイの原因</h1>
-      <p class="page-subtitle">AIに伝えきれていないところが見つかりました</p>
+    <!-- タイプ名ヒーロー（山場） -->
+    <div id="result-hero" class="result-hero">
+      <div class="result-hero-icon" aria-hidden="true">🎯</div>
+      <div id="result-type-name" class="result-type-name"></div>
+      <div id="result-type-tagline" class="result-type-tagline"></div>
+    </div>
+
+    <!-- インサイト（小さな驚き） -->
+    <div id="result-insight" class="result-insight">
+      <!-- JS で動的に生成 -->
     </div>
 
     <!-- スコアチャート -->
@@ -84,19 +91,36 @@
       <!-- JS で動的に生成 -->
     </div>
 
-    <!-- CTA -->
+    <!-- 無料価値：コピペ入力テンプレ -->
+    <div class="template-section">
+      <div class="template-section-header">
+        <span class="template-section-icon" aria-hidden="true">📝</span>
+        <span class="template-section-title">明日から使う入力テンプレ</span>
+      </div>
+      <p class="template-section-desc">AIに相談するとき、この3行を先に貼るだけで答えが変わります</p>
+      <div id="copy-template-box" class="copy-template-box">
+        <!-- JS で動的に生成 -->
+      </div>
+      <button id="btn-copy-template" class="btn btn-primary btn-copy-template" type="button">
+        <span id="template-copy-icon">📋</span>
+        テンプレをコピーする
+      </button>
+      <div id="template-copy-feedback" class="template-copy-feedback" aria-live="polite"></div>
+    </div>
+
+    <!-- 無料価値：Before/After デモ -->
+    <div class="result-actions">
+      <button id="btn-view-demo" class="btn btn-secondary">
+        Before／Afterデモを見る
+      </button>
+    </div>
+
+    <!-- CTA（有料／深掘り） -->
     <div class="cta-section">
       <p class="cta-text" id="cta-text"></p>
       <a id="cta-button" href="#" class="btn btn-primary" target="_blank" rel="noopener">
         社長AIセッションを見てみる
       </a>
-    </div>
-
-    <!-- アクションボタン -->
-    <div class="result-actions">
-      <button id="btn-view-demo" class="btn btn-secondary">
-        Before／Afterデモを見る
-      </button>
     </div>
 
     <!-- 紹介転送テキスト -->
