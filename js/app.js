@@ -8,7 +8,7 @@ import {
   axisShortLabels,
   axisDescriptions,
   resultTemplates,
-  demoContent,
+  demoContentByType,
   shareText,
   ctaTexts,
   typeNames,
@@ -403,7 +403,23 @@ function renderResult() {
 function renderDemo() {
   trackEvent('view_demo');
 
-  const demo = demoContent;
+  // タイプ別にデモを出し分け（7問の回答結果を活用）
+  const primaryAxis = state.scores?.topAxes?.[0] || 'decision';
+  const demo = demoContentByType[primaryAxis];
+
+  trackEvent('view_demo_personalized', { type: primaryAxis });
+
+  // パーソナライズ導入文
+  const introEl = document.getElementById('demo-intro');
+  if (introEl) {
+    introEl.textContent = demo.intro;
+  }
+
+  // Afterブロックのタイトルをタイプ別に変更
+  const afterTitleEl = document.getElementById('demo-after-title');
+  if (afterTitleEl) {
+    afterTitleEl.textContent = demo.afterTitle;
+  }
 
   // Before input
   document.getElementById('demo-before-input').textContent = demo.before.input;
