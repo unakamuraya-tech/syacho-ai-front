@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>社長向け AIコレジャナイ感 診断 | 7問・3分</title>
   <meta name="description" content="AIが悪いのではなく、使い方のズレがあるだけ。7問の診断でコレジャナイの原因がわかります。">
   <meta name="robots" content="index, follow">
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=4">
 </head>
+
 <body>
 
   <!-- ========================================
@@ -18,7 +25,7 @@
       <span class="home-icon" aria-hidden="true">🎯</span>
       <h1 class="page-title">社長向け<br>AIコレジャナイ感 診断</h1>
       <p class="page-subtitle">
-        AIが悪いのではなく、<strong>伝え方にズレがある</strong>だけ。<br>
+        AIが悪いんじゃない。<strong>あなたの取説がAIに届いていない</strong>だけ。<br>
         7問・約3分で、原因がわかります。
       </p>
     </div>
@@ -34,7 +41,7 @@
       </div>
       <div class="home-feature">
         <span class="home-feature-icon" aria-hidden="true">💡</span>
-        <span>入力を変えるだけでAIの挙動が変わるデモ付き</span>
+        <span>あなた専用の「ミニAI設定」をその場で作成</span>
       </div>
     </div>
 
@@ -94,16 +101,16 @@
     <!-- 無料価値：コピペ入力テンプレ -->
     <div class="template-section">
       <div class="template-section-header">
-        <span class="template-section-icon" aria-hidden="true">📝</span>
-        <span class="template-section-title">明日から使う入力テンプレ</span>
+        <span class="template-section-icon" aria-hidden="true">🤖</span>
+        <span class="template-section-title">あなたのミニAIができました</span>
       </div>
-      <p class="template-section-desc">AIに相談するとき、この3行を先に貼るだけで答えが変わります</p>
+      <p class="template-section-desc">これをChatGPTの最初に貼るだけで、返答が変わります</p>
       <div id="copy-template-box" class="copy-template-box">
         <!-- JS で動的に生成 -->
       </div>
       <button id="btn-copy-template" class="btn btn-primary btn-copy-template" type="button">
         <span id="template-copy-icon">📋</span>
-        テンプレをコピーする
+        ミニAIをコピーする
       </button>
       <div id="template-copy-feedback" class="template-copy-feedback" aria-live="polite"></div>
     </div>
@@ -194,6 +201,7 @@
     </button>
   </div>
 
-  <script type="module" src="js/app.js?v=3"></script>
+  <script type="module" src="js/app.js?v=4"></script>
 </body>
+
 </html>

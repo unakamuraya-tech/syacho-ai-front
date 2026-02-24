@@ -8,6 +8,7 @@ import {
   axisShortLabels,
   axisDescriptions,
   resultTemplates,
+  demoContents,
   demoContent,
   shareText,
   ctaTexts,
@@ -16,6 +17,7 @@ import {
   typeInsights,
   scoreAdvice,
   copyTemplates,
+  miniOsTemplates,
 } from './results.js';
 import { trackEvent, saveResult, getLastResult } from './events.js';
 
@@ -142,8 +144,8 @@ function renderQuiz() {
     <h2 class="quiz-question-text">${escapeHtml(q.text)}</h2>
     <div class="quiz-choices">
       ${q.choices
-        .map(
-          (c) => `
+      .map(
+        (c) => `
         <button class="quiz-choice ${selectedChoice === c.label ? 'selected' : ''}"
                 data-choice="${c.label}"
                 type="button"
@@ -152,15 +154,14 @@ function renderQuiz() {
           <span class="quiz-choice-text">${escapeHtml(c.text)}</span>
         </button>
       `
-        )
-        .join('')}
+      )
+      .join('')}
     </div>
     <div class="quiz-nav">
-      ${
-        state.currentQuestion > 0
-          ? '<button id="btn-prev" class="btn btn-ghost" type="button">← 戻る</button>'
-          : ''
-      }
+      ${state.currentQuestion > 0
+      ? '<button id="btn-prev" class="btn btn-ghost" type="button">← 戻る</button>'
+      : ''
+    }
     </div>
   `;
 
@@ -305,19 +306,19 @@ function renderResult() {
     })
     .join('');
 
-  // コピペテンプレ
-  const tmpl = copyTemplates[primaryAxis];
-  const templateText = `${tmpl.priority}\n${tmpl.constraint}\n${tmpl.role}`;
+  // ミニOS自動生成（穴埋めではなく埋まった状態で出す）
+  const miniOs = miniOsTemplates[primaryAxis];
+  const miniOsText = miniOs.lines.join('\n');
   const templateEl = document.getElementById('copy-template-box');
   templateEl.innerHTML = `
-    <div class="copy-template-line"><span class="copy-template-label">優先順位</span>${escapeHtml(tmpl.priority.replace(/^優先順位：/, ''))}</div>
-    <div class="copy-template-line"><span class="copy-template-label">制約</span>${escapeHtml(tmpl.constraint.replace(/^制約：/, ''))}</div>
-    <div class="copy-template-line"><span class="copy-template-label">AIの役割</span>${escapeHtml(tmpl.role.replace(/^AIの役割：/, ''))}</div>
+    <div class="mini-os-title">${escapeHtml(miniOs.title)}</div>
+    ${miniOs.lines.map((line) => `<div class="copy-template-line">${escapeHtml(line)}</div>`).join('')}
+    <div class="mini-os-prompt">${escapeHtml(miniOs.prompt)}</div>
   `;
 
   // テンプレコピーボタン
   document.getElementById('btn-copy-template').addEventListener('click', () => {
-    navigator.clipboard.writeText(templateText).then(() => {
+    navigator.clipboard.writeText(miniOsText).then(() => {
       trackEvent('copy_template');
       const btn = document.getElementById('btn-copy-template');
       const icon = document.getElementById('template-copy-icon');
@@ -373,7 +374,9 @@ function renderResult() {
 function renderDemo() {
   trackEvent('view_demo');
 
-  const demo = demoContent;
+  // タイプに応じたデモを選択
+  const primaryAxis = state.scores?.topAxes?.[0] || 'companion';
+  const demo = demoContents[primaryAxis] || demoContents.companion;
 
   // Before input
   document.getElementById('demo-before-input').textContent = demo.before.input;
