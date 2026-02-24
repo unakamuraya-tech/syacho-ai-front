@@ -339,6 +339,21 @@ function renderResult() {
     `${escapeHtml(ctaTexts.main)}<br><strong>${escapeHtml(ctaTexts.sub)}</strong>`;
   document.getElementById('cta-button').href = CTA_URL;
 
+  // Download form (placeholder - backend TBD: ConvertKit)
+  const downloadForm = document.getElementById('download-form');
+  if (downloadForm) {
+    downloadForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('download-email').value;
+      if (!email) return;
+      trackEvent('submit_download', { email });
+      // TODO: ConvertKit API連携（3月実装予定）
+      downloadForm.style.display = 'none';
+      document.getElementById('download-feedback').textContent =
+        '✅ ありがとうございます！資料をメールでお送りします。';
+    });
+  }
+
   // Share text
   const currentUrl = window.location.origin + window.location.pathname;
   document.getElementById('share-text-box').textContent = shareText + '\n' + currentUrl;
