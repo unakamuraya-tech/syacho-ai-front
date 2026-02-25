@@ -326,6 +326,24 @@
   margin-bottom: 20px;
 }
 
+/* --- Mid CTA --- */
+.lp-mid-cta {
+  text-align: center;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+}
+
+.lp-mid-cta-text {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--color-text-sub);
+  margin-bottom: 14px;
+}
+
+.lp-mid-cta-text strong {
+  color: var(--color-primary);
+}
+
 /* --- FAQ（反論つぶし） --- */
 .lp-faq {
   display: flex;
