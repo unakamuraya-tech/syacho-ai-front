@@ -317,6 +317,55 @@
   color: var(--color-text-light);
 }
 
+/* --- FAQ（反論つぶし） --- */
+.lp-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.lp-faq-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+
+.lp-faq-q {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.lp-faq-q::before {
+  content: 'Q';
+  position: absolute;
+  left: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.lp-faq-a {
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: var(--color-text-sub);
+}
+
+.lp-faq-a strong {
+  color: var(--color-text);
+}
+
+.lp-faq-a a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  font-weight: 500;
+}
+
 /* --- Footer --- */
 .lp-footer {
   text-align: center;

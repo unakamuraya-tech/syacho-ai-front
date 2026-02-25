@@ -18,6 +18,7 @@ import {
   scoreAdvice,
   copyTemplates,
   miniOsTemplates,
+  changePreview,
 } from './results.js';
 import { trackEvent, saveResult, getLastResult } from './events.js';
 
@@ -333,6 +334,27 @@ function renderResult() {
       }, 3000);
     });
   });
+
+  // 変化予告（反論つぶし）
+  const preview = changePreview[primaryAxis];
+  const previewEl = document.querySelector('.change-preview');
+  if (previewEl) {
+    previewEl.innerHTML = `
+      <div class="change-preview-title">${escapeHtml(preview.heading)}</div>
+      <div class="change-preview-ba">
+        <div class="change-preview-item before">
+          <span class="change-preview-label">今</span>
+          <span>${escapeHtml(preview.before)}</span>
+        </div>
+        <div class="change-preview-arrow" aria-hidden="true">↓</div>
+        <div class="change-preview-item after">
+          <span class="change-preview-label">後</span>
+          <span>${escapeHtml(preview.after)}</span>
+        </div>
+      </div>
+      <p class="change-preview-session">${escapeHtml(preview.session)}</p>
+    `;
+  }
 
   // CTA
   document.getElementById('cta-text').innerHTML =
