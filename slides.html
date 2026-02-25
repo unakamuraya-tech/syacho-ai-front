@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社長AI - 提案資料 v5</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f5f5f7;
+            --text: #1d1d1f;
+            --sub: #86868b;
+            --accent: #0071e3;
+            --card: rgba(255, 255, 255, 0.7);
+            --gradient: linear-gradient(135deg, #0071e3 0%, #40c9ff 100%);
+            --border: rgba(255, 255, 255, 0.4);
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Noto Sans JP', sans-serif;
+            background: radial-gradient(circle at 50% 50%, #ffffff 0%, #f5f5f7 100%);
+            color: var(--text);
+            overflow: hidden;
+            height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-glow::before,
+        .bg-glow::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            filter: blur(120px);
+            opacity: 0.25;
+            z-index: -1;
+        }
+
+        .bg-glow::before {
+            top: -20%;
+            right: -20%;
+            background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+            animation: f1 15s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
+        }
+
+        .bg-glow::after {
+            bottom: -20%;
+            left: -20%;
+            background: radial-gradient(circle, #40c9ff 0%, transparent 70%);
+            animation: f2 18s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
+        }
+
+        @keyframes f1 {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(-30%, 20%) scale(1.2);
+            }
+        }
+
+        @keyframes f2 {
+            0% {
+                transform: translate(0, 0) scale(1.2);
+            }
+
+            100% {
+                transform: translate(30%, -20%) scale(1);
+            }
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 80px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        h1,
+        h2,
+        h3 {
+            text-wrap: balance;
+        }
+
+        h1 {
+            font-size: 8.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(180deg, #1d1d1f 30%, #86868b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 3.8rem;
+            font-weight: 600;
+            color: var(--sub);
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            letter-spacing: -0.02em;
+        }
+
+        .w {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .accent {
+            color: var(--accent);
+        }
+
+        .bold {
+            font-weight: 700;
+        }
+
+        .nowrap {
+            display: inline-block;
+        }
+
+        .glass {
+            background: var(--card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 3.5rem;
+            box-shadow: var(--shadow);
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .glass:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            width: 100%;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 14px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 1.3rem;
+        }
+
+        .card-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .card-text {
+            font-size: 1.6rem;
+            line-height: 1.5;
+            color: var(--sub);
+        }
+
+        .fl {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .fi {
+            font-size: 2rem;
+            margin-bottom: 1.4rem;
+            padding-left: 3rem;
+            position: relative;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .fi::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Testimonial */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            width: 100%;
+        }
+
+        .testimonial-card {
+            padding: 3rem;
+        }
+
+        .testimonial-quote {
+            font-size: 2rem;
+            line-height: 1.7;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-result {
+            background: rgba(0, 113, 227, 0.06);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-result p {
+            font-size: 1.6rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-size: 1.4rem;
+            color: var(--sub);
+        }
+
+        /* FAQ */
+        .faq-list {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .faq-item {
+            margin-bottom: 2rem;
+        }
+
+        .faq-q {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--text);
+        }
+
+        .faq-q::before {
+            content: 'Q. ';
+            color: var(--accent);
+        }
+
+        .faq-a {
+            font-size: 1.7rem;
+            line-height: 1.7;
+            color: var(--sub);
+            padding-left: 2.5rem;
+        }
+
+        /* CTA */
+        .cta-box {
+            background: var(--gradient);
+            border-radius: 30px;
+            padding: 4rem 5rem;
+            max-width: 900px;
+            margin: 0 auto;
+            color: white;
+            text-align: center;
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-bottom: 2rem;
+            font-size: 3.5rem;
+        }
+
+        .cta-box p {
+            font-size: 2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            background: white;
+            color: var(--accent);
+            font-size: 2rem;
+            font-weight: 700;
+            padding: 1.2rem 4rem;
+            border-radius: 100px;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .cta-url {
+            font-size: 1.4rem;
+            opacity: 0.7;
+            margin-top: 1.5rem;
+        }
+
+        /* Navigation */
+        .nav-ui {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(15px);
+            padding: 12px 24px;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-btn:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text);
+        }
+
+        .slide-indicator {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--sub);
+            min-width: 60px;
+            text-align: center;
+        }
+
+        /* Print */
+        @media print {
+            .slide {
+                position: relative;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                page-break-after: always;
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .nav-ui {
+                display: none;
+            }
+
+            .bg-glow {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-glow"></div>
+
+    <!-- Slide 1: Hero -->
+    <section class="slide active">
+        <div class="w center">
+            <h1 class="hero-gradient">社長AI.</h1>
+            <h2><span class="nowrap">会社の美学や価値観を</span><span class="nowrap">AIに理解させる</span></h2>
+            <p style="font-size: 2.4rem; color: var(--sub); font-weight: 400;">
+                思考インフラ設計のご提案
+            </p>
+        </div>
+    </section>
+
+    <!-- Slide 2: Hook（シーンから入る） -->
+    <section class="slide">
+        <div class="w center">
+            <div class="glass" style="max-width: 1000px; margin: 0 auto; padding: 5rem;">
+                <p style="font-size: 3rem; line-height: 1.8; margin-bottom: 3rem;">
+                    月曜の朝。<br>
+                    今週やることを確認して、ChatGPTに聞いてみる。<br><br>
+                    <span style="color: var(--sub);">「市場調査をしましょう」<br>
+                        「ビジネスプランを作りましょう」</span><br><br>
+                    <span class="bold">……それは分かっている。</span><br>
+                    <span class="bold">「で、<span class="accent">うちは</span>どうすればいいの？」</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 3: 自分ごと化 -->
+    <section class="slide">
+        <div class="w">
+            <h3>こんな状況、<span class="accent">ありませんか？</span></h3>
+            <div class="grid-2">
+                <div class="glass">
+                    <div class="card-title">相談相手がいない</div>
+                    <ul class="fl">
+                        <li class="fi">同じような判断を、毎回ゼロから考えている</li>
+                        <li class="fi">スタッフに聞いても、最後は自分で決めるしかない</li>
+                    </ul>
+                </div>
+                <div class="glass">
+                    <div class="card-title">実務に追われている</div>
+                    <ul class="fl">
+                        <li class="fi">売上は安定しているが、この延長線でいいのかと思っている</li>
+                        <li class="fi">未来のことを考える余裕がない</li>
+                    </ul>
+                </div>
+                <div class="glass">
+                    <div class="card-title">AI使ってみたけど…</div>
+                    <ul class="fl">
+                        <li class="fi">毎回プロンプトを考えるのが面倒</li>
+                        <li class="fi">一般論しか返ってこない</li>
+                    </ul>
+                </div>
+                <div class="glass">
+                    <div class="card-title">発信が後回し</div>
+                    <ul class="fl">
+                        <li class="fi">SNSやブログを更新する時間がない</li>
+                        <li class="fi">自分らしさが出せない</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 4: 診断（裏の痛み） -->
+    <section class="slide">
+        <div class="w center">
+            <div class="glass" style="max-width: 1000px; margin: 0 auto; padding: 5rem;">
+                <h3 style="margin-bottom: 2rem;">原因は<span class="accent">ここ</span>にあります</h3>
+                <p style="font-size: 2.6rem; line-height: 1.7; margin-bottom: 2.5rem;">
+                    AIが悪いわけではありません。<br>
+                    <span class="bold">あなたの判断基準を、AIに渡していないだけ</span>です。
+                </p>
+                <p style="font-size: 2.2rem; line-height: 1.7; color: var(--sub);">
+                    優先順位、現場の制約、「うちらしさ」。<br>
+                    これを渡さなければ、AIは一般論しか出せません。<br><br>
+                    毎回プロンプトを考え直す → 結局自分で修正 →<br>
+                    <span class="bold" style="color: var(--text);">「AI、使えない」で終わる。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 5: 解決の道筋 -->
+    <section class="slide">
+        <div class="w center">
+            <div class="glass" style="max-width: 1000px; margin: 0 auto; padding: 5rem;">
+                <h3 style="margin-bottom: 2rem;">解決策：<span class="accent">判断基準を渡す</span></h3>
+                <div style="font-size: 2.4rem; line-height: 2; margin: 2.5rem 0;">
+                    <p style="margin: 2rem 0;"><span class="bold accent">①</span> 社長の判断基準を、一緒に言語化する</p>
+                    <p style="font-size: 2rem; color: var(--sub);">↓</p>
+                    <p style="margin: 2rem 0;"><span class="bold accent">②</span> それをAIに渡す（一度だけ）</p>
+                    <p style="font-size: 2rem; color: var(--sub);">↓</p>
+                    <p style="margin: 2rem 0;"><span class="bold accent">③</span> あなたの「分身」として、AIが動き続ける</p>
+                </div>
+                <p style="font-size: 1.8rem; color: var(--sub); margin-top: 2rem;">
+                    仕事の仕方、AIへの指示出しの<span class="bold" style="color: var(--text);">考え方の前提そのもの</span>が変わります。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 6: Before/After -->
+    <section class="slide">
+        <div class="w">
+            <h3>導入すると、<span class="accent">こう変わります</span></h3>
+            <div class="grid-3">
+                <div class="glass">
+                    <div class="card-title">AIが右腕になる</div>
+                    <p class="card-text" style="margin-bottom: 1rem;">
+                        <span class="bold">Before:</span> 毎回プロンプトを考える<br>
+                        <span class="bold accent">After:</span> 判断基準を持ったAIが結論から出す
+                    </p>
+                    <p class="card-text">24時間365日、ブレない。辞めない。疲れない。</p>
+                </div>
+                <div class="glass">
+                    <div class="card-title">言語化が速くなる</div>
+                    <p class="card-text" style="margin-bottom: 1rem;">
+                        <span class="bold">Before:</span> 頭の中がモヤモヤ<br>
+                        <span class="bold accent">After:</span>「なんとなく」が明確な言葉になる
+                    </p>
+                    <p class="card-text">社員・取引先・家族にも伝えやすくなる。</p>
+                </div>
+                <div class="glass">
+                    <div class="card-title">判断疲れが減る</div>
+                    <p class="card-text" style="margin-bottom: 1rem;">
+                        <span class="bold">Before:</span> 選択疲れで頭が重い<br>
+                        <span class="bold accent">After:</span> 重要な判断にだけ集中
+                    </p>
+                    <p class="card-text">1時間かかっていた作業が10分になった事例も。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 7: 証拠（お客様の声） -->
+    <section class="slide">
+        <div class="w">
+            <h3>体験した方の<span class="accent">声</span></h3>
+            <div class="testimonial-grid">
+                <div class="glass testimonial-card">
+                    <p class="testimonial-quote">
+                        「<span class="bold accent">革命ですね。</span><br>
+                        1時間かかっていたものが<br>10分でできる。同じクオリティ」
+                    </p>
+                    <div class="testimonial-result">
+                        <p>SNS発信が<span class="bold">1/6の時間</span>に短縮。<br>空いた時間で新規事業の企画に着手。</p>
+                    </div>
+                    <p class="testimonial-author">O. さん / SNS運用コンサルタント</p>
+                </div>
+                <div class="glass testimonial-card">
+                    <p class="testimonial-quote">
+                        「自分も相手も<br>
+                        <span class="bold accent">次の一歩を踏み出しやすい</span><br>
+                        アシストに変わった」
+                    </p>
+                    <div class="testimonial-result">
+                        <p>セミナーに人が来ない状態から、<br>
+                            <span class="bold">6カ月講座4名・セミナー8名</span>のお申し込み。
+                        </p>
+                    </div>
+                    <p class="testimonial-author">A. さん / 経理コンサルタント</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 8: 導入ステップ -->
+    <section class="slide">
+        <div class="w">
+            <h3>導入<span class="accent">ステップ</span></h3>
+            <div class="grid-3">
+                <div class="glass" style="text-align: center;">
+                    <div class="card-icon" style="margin: 0 auto 1.5rem;">1</div>
+                    <div class="card-title">お試し</div>
+                    <p class="card-text">
+                        90分のセッションで<br>
+                        判断の「前提」を一緒に整理。<br><br>
+                        <span class="bold" style="color: var(--text);">3万円＋税</span>
+                    </p>
+                </div>
+                <div class="glass" style="text-align: center;">
+                    <div class="card-icon" style="margin: 0 auto 1.5rem;">2</div>
+                    <div class="card-title">本格導入</div>
+                    <p class="card-text">
+                        判断の「型」を作成し、<br>
+                        ChatGPTにインストール。<br><br>
+                        <span class="bold" style="color: var(--text);">個人: 60万円＋税<br>組織: 150万円＋税</span><br>
+                        <span style="font-size: 1.3rem;">60分/回 × 月2回 × 3か月</span>
+                    </p>
+                </div>
+                <div class="glass" style="text-align: center;">
+                    <div class="card-icon" style="margin: 0 auto 1.5rem;">3</div>
+                    <div class="card-title">定着</div>
+                    <p class="card-text">
+                        判断の型が定着。<br>
+                        「これやりたい！」が<br>すぐ形になっていく。
+                    </p>
+                </div>
+            </div>
+            <p style="text-align: center; font-size: 1.6rem; color: var(--sub); margin-top: 2.5rem;">
+                ※ ツール導入やコンサルの値段ではありません。<span class="bold" style="color: var(--text);">判断を何年も使い回せる状態</span>をつくる設計費です。
+            </p>
+        </div>
+    </section>
+
+    <!-- Slide 9: 反論つぶし（FAQ） -->
+    <section class="slide">
+        <div class="w center">
+            <h3>でも…と<span class="accent">思った方へ</span></h3>
+            <div class="faq-list">
+                <div class="faq-item glass" style="padding: 2.5rem 3rem;">
+                    <div class="faq-q">自分にとって何が良いのか、まだ分かりません</div>
+                    <div class="faq-a">
+                        それが普通です。<span class="bold" style="color: var(--text);">体験しないと価値が伝わりにくい</span>サービスです。<br>
+                        まず無料診断（3分）を試してみてください。
+                    </div>
+                </div>
+                <div class="faq-item glass" style="padding: 2.5rem 3rem;">
+                    <div class="faq-q">料金で何をどれだけやってくれるか分かりません</div>
+                    <div class="faq-a">
+                        面談（トライアル）で一緒に整理します。<span class="bold" style="color: var(--text);">売り込みの場ではありません</span>。<br>
+                        合わなければ、それだけで終わりです。
+                    </div>
+                </div>
+                <div class="faq-item glass" style="padding: 2.5rem 3rem;">
+                    <div class="faq-q">AIに詳しくなくても大丈夫ですか？</div>
+                    <div class="faq-a">
+                        大丈夫です。<span class="bold" style="color: var(--text);">必要なのは「今、何に困っているか」だけ</span>です。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 10: CTA -->
+    <section class="slide">
+        <div class="w center">
+            <div class="cta-box">
+                <h3>まず、3分の診断を<br>試してみてください</h3>
+                <p>
+                    AIとの「ズレ」の原因が見えます。<br>
+                    無料・匿名・登録不要。
+                </p>
+                <a href="https://unakamuraya-tech.github.io/syacho-ai-front/" class="cta-btn">
+                    無料診断をはじめる →
+                </a>
+                <p class="cta-url">unakamuraya-tech.github.io/syacho-ai-front</p>
+            </div>
+            <div style="margin-top: 4rem;">
+                <p style="font-size: 1.8rem; color: var(--sub);">
+                    面談のお問い合わせ：<span class="bold" style="color: var(--text);">中村和幸</span><br>
+                    <span class="accent">u.nakamuraya@gmail.com</span> ／ naka668.com
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 11: Closing -->
+    <section class="slide">
+        <div class="w center">
+            <p style="font-size: 3.2rem; font-weight: 700; margin-bottom: 2rem;">
+                判断を溜め込む構造から、抜け出す。
+            </p>
+            <p style="font-size: 2.2rem; color: var(--sub); margin-bottom: 5rem;">
+                本業を軽やかに捌きながら、未来のことにもじっくり向き合える環境を。
+            </p>
+            <h1 class="hero-gradient" style="font-size: 11rem;">社長AI.</h1>
+        </div>
+    </section>
+
+    <!-- Navigation UI -->
+    <div class="nav-ui">
+        <button class="nav-btn" onclick="prevSlide()">
+            <svg viewBox="0 0 24 24">
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+            </svg>
+        </button>
+        <div class="slide-indicator">
+            <span id="current">1</span> / <span id="total">11</span>
+        </div>
+        <button class="nav-btn" onclick="nextSlide()">
+            <svg viewBox="0 0 24 24">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        let cur = 0;
+        const slides = document.querySelectorAll('.slide');
+        const total = slides.length;
+        document.getElementById('total').textContent = total;
+
+        function go(n) {
+            slides[cur].classList.remove('active');
+            cur = ((n % total) + total) % total;
+            slides[cur].classList.add('active');
+            document.getElementById('current').textContent = cur + 1;
+        }
+        function nextSlide() { go(cur + 1); }
+        function prevSlide() { go(cur - 1); }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+            else if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+        });
+
+        // Touch swipe support
+        let tx = 0;
+        document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
+        document.addEventListener('touchend', e => {
+            const dx = e.changedTouches[0].clientX - tx;
+            if (Math.abs(dx) > 50) dx > 0 ? prevSlide() : nextSlide();
+        });
+    </script>
+</body>
+
+</html>
