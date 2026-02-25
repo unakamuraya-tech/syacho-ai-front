@@ -358,7 +358,7 @@ function renderResult() {
 
   // CTA
   document.getElementById('cta-text').innerHTML =
-    `${escapeHtml(ctaTexts.main)}<br><strong>${escapeHtml(ctaTexts.sub)}</strong>`;
+    `<span class="cta-trigger">${escapeHtml(ctaTexts.trigger)}</span>${escapeHtml(ctaTexts.main)}<br><strong>${escapeHtml(ctaTexts.sub)}</strong>`;
   document.getElementById('cta-button').href = CTA_URL;
 
   // Download form (placeholder - backend TBD: ConvertKit)

@@ -692,6 +692,29 @@ body {
   border-radius: var(--radius-sm);
 }
 
+/* Result Page Testimonial（信用摩擦の解消） */
+.result-testimonial {
+  border-left: 3px solid var(--color-accent);
+  padding: 12px 16px;
+  margin: 20px 0;
+}
+
+.result-testimonial-text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text-sub);
+  margin-bottom: 6px;
+}
+
+.result-testimonial-text strong {
+  color: var(--color-primary);
+}
+
+.result-testimonial-author {
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+}
+
 .result-actions {
   display: flex;
   flex-direction: column;
@@ -717,6 +740,13 @@ body {
 
 .cta-text strong {
   color: var(--color-primary);
+}
+
+.cta-trigger {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--color-text-light);
+  margin-bottom: 8px;
 }
 
 /* Download Section (Lead Capture) */
